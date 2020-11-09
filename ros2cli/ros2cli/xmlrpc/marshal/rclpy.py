@@ -35,9 +35,11 @@ def end_duration(unmarshaller, data):
 
 
 def dump_duration(marshaller, value, write):
-    write(f'<value><{fullname(type(value))}>')
+    write(f'<value><double>')
+    # write(f'<value><{fullname(type(value))}>')
     write(str(value.nanoseconds))
-    write(f'</{fullname(type(value))}></value>')
+    write(f'</double></value>')
+    # write(f'</{fullname(type(value))}></value>')
 
 
 Unmarshaller.dispatch[fullname(rclpy.duration.Duration)] = end_duration

@@ -23,12 +23,12 @@ def end_any_with_slots(unmarshaller, data, type_):
 
 
 def dump_any_with_slots(marshaller, value, write, transform=None):
-    write(f'<value><{fullname(type(value))}>')
+    # write(f'<value><{fullname(type(value))}>')
     slots = value.__slots__
     if transform is not None:
         slots = map(transform, slots)
     marshaller.dump_struct({name: getattr(value, name) for name in slots}, write)
-    write(f'</{fullname(type(value))}></value>')
+    # write(f'</{fullname(type(value))}></value>')
 
 
 def end_any_enum(unmarshaller, data, enum_):
@@ -37,6 +37,8 @@ def end_any_enum(unmarshaller, data, enum_):
 
 
 def dump_any_enum(marshaller, value, write):
-    write(f'<value><{fullname(type(value))}>')
+    write(f'<value><int>')
+    # write(f'<value><{fullname(type(value))}>')
     write(str(value.value))
-    write(f'</{fullname(type(value))}></value>')
+    write(f'</int></value>')
+    # write(f'</{fullname(type(value))}></value>')
